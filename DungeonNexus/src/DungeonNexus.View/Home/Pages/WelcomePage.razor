@@ -4,11 +4,7 @@
 
 <p>Hello @UserViewModel.Name</p>
 
+<MatButton OnClick="Logout">Logout</MatButton>
+
 @code {
-    [Inject]
-    private User UserViewModel
-    {
-        get => ViewModel!;
-        set => ViewModel = value;
-    }
 }

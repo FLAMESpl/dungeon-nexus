@@ -17,4 +17,8 @@
     <ProjectReference Include="..\DungeonNexus.View\DungeonNexus.View.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\pics\fb\" />
+  </ItemGroup>
+
 </Project>

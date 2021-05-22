@@ -33,7 +33,7 @@ namespace DungeonNexus.ViewModel.Users
                 var user = await usersRepository.Find(userId.Value);
                 if (user is null)
                 {
-                    await localStorage.RemoveItemAsync(USER_ID_KEY);
+                    await RemoveLoggedUser();
                     return null;
                 }
                 else
@@ -45,6 +45,11 @@ namespace DungeonNexus.ViewModel.Users
             {
                 return null;
             }
+        }
+
+        public async Task RemoveLoggedUser()
+        {
+            await localStorage.RemoveItemAsync(USER_ID_KEY);
         }
     }
 }

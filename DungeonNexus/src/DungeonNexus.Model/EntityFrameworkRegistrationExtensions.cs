@@ -23,7 +23,7 @@ namespace DungeonNexus.Model
                 .UseMySql(
                     "server=localhost;user=root;password=;database=DungeonNexus",
                     new MariaDbServerVersion(new Version(10, 2, 36)),
-                    mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend))
+                    mySqlOptions => mySqlOptions.CharSet(CharSet.Utf8Mb4).CharSetBehavior(CharSetBehavior.NeverAppend))
 #if DEBUG
                 .EnableSensitiveDataLogging()
 #endif

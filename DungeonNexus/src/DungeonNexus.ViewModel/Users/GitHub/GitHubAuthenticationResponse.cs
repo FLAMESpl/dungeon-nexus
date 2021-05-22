@@ -2,6 +2,6 @@
 {
     internal record GitHubAuthenticationResponse(string access_token, string scope, string token_type)
     {
-        public string AuthorizationToken => $"Bearer {access_token}";
+        public string AuthorizationToken => $"{token_type} {access_token}";
     }
 }

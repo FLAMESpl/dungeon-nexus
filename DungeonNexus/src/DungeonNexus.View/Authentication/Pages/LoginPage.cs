@@ -9,6 +9,9 @@ namespace DungeonNexus.View.Authentication.Pages
 {
     public partial class LoginPage
     {
+        [Parameter]
+        public string? IdentityProvider { get; set; }
+
         [Inject]
         private User UserViewModel
         {
@@ -24,7 +27,20 @@ namespace DungeonNexus.View.Authentication.Pages
         {
             var uri = new Uri(manager.Uri);
             var parsedQuery = QueryHelpers.ParseQuery(uri.Query);
-            await UserViewModel.LogInWithGitHub(parsedQuery["code"], parsedQuery["state"]);
+
+            if (IdentityProvider == "github")
+            {
+                await UserViewModel.LogInWithGitHub(parsedQuery["code"], parsedQuery["state"]);
+            }
+            else if (IdentityProvider == "facebook")
+            {
+                await UserViewModel.LogInWithFacebook(parsedQuery["code"], parsedQuery["state"]);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown identity provider.");
+            }
+
             NavigationManager.NavigateTo("welcome");
             await base.OnInitializedAsync();
         }
