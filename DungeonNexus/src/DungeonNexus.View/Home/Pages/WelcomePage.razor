@@ -1,0 +1,14 @@
+﻿@using ViewModel.Users;
+@page "/welcome"
+@inherits ReactiveComponentBase<User>
+
+<p>Hello @UserViewModel.Name</p>
+
+@code {
+    [Inject]
+    private User UserViewModel
+    {
+        get => ViewModel!;
+        set => ViewModel = value;
+    }
+}

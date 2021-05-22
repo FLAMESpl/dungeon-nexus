@@ -1,8 +1,16 @@
+using Blazored.LocalStorage;
+using DungeonNexus.Infrastructure.DependencyContainer;
+using DungeonNexus.Model;
+using DungeonNexus.Model.Users;
+using DungeonNexus.ViewModel;
+using DungeonNexus.ViewModel.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Linq;
+using System.Reflection;
 
 namespace DungeonNexus
 {
@@ -21,6 +29,12 @@ namespace DungeonNexus
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddDbContextFactory();
+            services.AddBlazoredLocalStorage();
+            services.AddHttpClient();
+
+            RegisterAnnotatedTypesFromAssemblyContaining<DungeonNexusDB>(services);
+            RegisterAnnotatedTypesFromAssemblyContaining<ViewModelBase>(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +58,19 @@ namespace DungeonNexus
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+        }
+
+        private static void RegisterAnnotatedTypesFromAssemblyContaining<TRepresentant>(IServiceCollection serviceCollection)
+        {
+            var services = typeof(TRepresentant).Assembly
+                .GetTypes()
+                .Select(type => (type, attribute: type.GetCustomAttribute<ServiceAttribute>()));
+
+            foreach (var (type, attribute) in services)
+            {
+                if (attribute is not null)
+                    attribute.Register(type, serviceCollection);
+            }
         }
     }
 }

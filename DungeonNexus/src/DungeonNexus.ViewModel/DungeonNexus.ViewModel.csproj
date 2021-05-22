@@ -1,14 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
     <PackageReference Include="MatBlazor" Version="2.8.0" />
+    <PackageReference Include="ReactiveUI" Version="13.1.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DungeonNexus.Infrastructure\DungeonNexus.Infrastructure.csproj" />
     <ProjectReference Include="..\DungeonNexus.Model\DungeonNexus.Model.csproj" />
   </ItemGroup>
 
