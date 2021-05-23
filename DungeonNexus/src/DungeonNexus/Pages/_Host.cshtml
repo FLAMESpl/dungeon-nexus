@@ -14,11 +14,10 @@
     <base href="~/" />
     <link href="css/site.css" rel="stylesheet" />
     <link href="_content/MatBlazor/dist/matBlazor.css" rel="stylesheet" />
-    <script src="_content/MatBlazor/dist/matBlazor.js"></script>
 </head>
 <body>
     <app>
-        <component type="typeof(App)" render-mode="Server" />
+        <component type="typeof(View.App)" render-mode="Server" />
     </app>
 
     <div id="blazor-error-ui">
@@ -33,5 +32,7 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+    <script src="_content/MatBlazor/dist/matBlazor.js"></script>
+    <script src="_content/Blazor.Extensions.Canvas/blazor.extensions.canvas.js"></script>
 </body>
 </html>

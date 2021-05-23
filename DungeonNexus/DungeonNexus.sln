@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonNexus.ViewModel", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonNexus.View", "src\DungeonNexus.View\DungeonNexus.View.csproj", "{85DEBA51-651B-4433-8546-693493C230AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonNexus.Infrastructure", "src\DungeonNexus.Infrastructure\DungeonNexus.Infrastructure.csproj", "{1B516048-8151-420A-BF3A-C965A9302E65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonNexus.Infrastructure", "src\DungeonNexus.Infrastructure\DungeonNexus.Infrastructure.csproj", "{1B516048-8151-420A-BF3A-C965A9302E65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

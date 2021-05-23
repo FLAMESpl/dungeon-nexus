@@ -1,0 +1,24 @@
+﻿@inherits LayoutComponentBase
+
+<MatAppBarContainer>
+    <MatAppBar Fixed="true">
+        @if (initialized)
+        {
+            <MatAppBarRow>
+                <MatAppBarSection Align="MatAppBarSectionAlign.End">
+                    <div class="mat-button" style="margin-right: 10px">
+                        Hello, @UserViewModel.Name
+                    </div>
+                    @if (UserViewModel.AvatarUrl is not null)
+                    {
+                        <img src="@UserViewModel.AvatarUrl" height="64" width="64" />
+                    }
+                    <MatButton OnClick="Logout" Unelevated="true">Logout</MatButton>
+                </MatAppBarSection>
+            </MatAppBarRow>
+        }
+    </MatAppBar>
+    <MatAppBarContent>
+        @Body
+    </MatAppBarContent>
+</MatAppBarContainer>

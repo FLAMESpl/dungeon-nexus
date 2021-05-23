@@ -10,8 +10,9 @@ namespace DungeonNexus.View.Home.Pages
 {
     public partial class Index
     {
+        private bool initialized = false;
         private const string GITHUB_URI_TEMPLATE = "https://github.com/login/oauth/authorize?client_id=5d34f736a0546c59cae6&redirect_uri=http://localhost:5000/login/github&state={0}";
-        private const string FACEBOOK_URI_TEMPLATE = "https://www.facebook.com/v10.0/dialog/oauth?client_id=2836112659984937&redirect_uri=http://localhost:5000/login/facebook&state={0}&scope=public_profile";
+        private const string FACEBOOK_URI_TEMPLATE = "https://www.facebook.com/v10.0/dialog/oauth?client_id=2836112659984937&redirect_uri=http://localhost:5000/login/facebook&state={0}";
 
         [Inject]
         [AllowNull]
@@ -60,6 +61,7 @@ namespace DungeonNexus.View.Home.Pages
             }
 
             await base.OnInitializedAsync();
+            initialized = true;
         }
     }
 }

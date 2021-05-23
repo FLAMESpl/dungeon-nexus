@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazor.Extensions.Canvas" Version="1.1.1" />
     <PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
     <PackageReference Include="ReactiveUI.Blazor" Version="13.1.1" />
   </ItemGroup>

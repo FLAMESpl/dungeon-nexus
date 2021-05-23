@@ -46,7 +46,15 @@ namespace DungeonNexus.ViewModel.Users
 
         public async Task<bool> TryLogInFromStorage()
         {
-            return !string.IsNullOrEmpty(Name = await userStore.FindLoggedUserName());
+            if ((await userStore.FindInStore()) is { } user)
+            {
+                Initialize(user);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task LogInWithGitHub(string code, string state)
@@ -114,13 +122,19 @@ namespace DungeonNexus.ViewModel.Users
                 avatarFilePath[1..]));
         }
 
+        public async Task LogOut()
+        {
+            await userStore.RemoveLoggedUser();
+            Name = string.Empty;
+            IdentityProvider = IdentityProvider.None;
+            AvatarUrl = null;
+        }
+
         private async Task UpsertUser(Model.Users.User user)
         {
             var userId = await usersRepository.Upsert(user);
             await userStore.SetLoggedUser(userId);
-            Name = user.Name;
-            IdentityProvider = user.IdentityProvider;
-            AvatarUrl = user.AvatarUrl;
+            Initialize(user);
         }
 
         private async Task ConfirmState(string state)
@@ -129,6 +143,13 @@ namespace DungeonNexus.ViewModel.Users
 
             if (localState != state)
                 throw new InvalidOperationException("Local state does not match with state received from identity provider.");
+        }
+
+        private void Initialize(Model.Users.User user)
+        {
+            Name = user.Name;
+            IdentityProvider = user.IdentityProvider;
+            AvatarUrl = user.AvatarUrl;
         }
     }
 }

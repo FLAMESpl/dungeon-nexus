@@ -24,7 +24,7 @@ namespace DungeonNexus.ViewModel.Users
             await localStorage.SetItemAsync(USER_ID_KEY, userId);
         }
 
-        public async Task<string?> FindLoggedUserName()
+        public async Task<Model.Users.User?> FindInStore()
         {
             var userId = await localStorage.GetItemAsync<long?>(USER_ID_KEY);
 
@@ -38,7 +38,8 @@ namespace DungeonNexus.ViewModel.Users
                 }
                 else
                 {
-                    return user.Name;
+                    
+                    return user;
                 }
             }
             else

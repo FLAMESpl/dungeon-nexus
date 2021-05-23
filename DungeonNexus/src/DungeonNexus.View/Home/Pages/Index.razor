@@ -1,7 +1,37 @@
 ﻿@using ViewModel.Users;
 @page "/"
 @inherits ReactiveComponentBase<User>
+@layout EmptyLayout
 
-<h3>Index</h3>
-<MatButton OnClick="ClickGithub">Login with Github</MatButton>
-<MatButton OnClick="ClickFacebook">Login with Facebook</MatButton>
+@if (initialized)
+{
+    <div class="@Layout.Container max-height">
+        <div class="@Layout.Inner max-height">
+            <div class="@Layout.Cell @Layout.CellSpan(6) @Layout.CellAlign(Position.Middle)">
+                <div @onclick="ClickGithub">
+                    <img src="/images/github-login.png" style="cursor: pointer" />
+                </div>
+            </div>
+            <div class="@Layout.Cell @Layout.CellSpan(6) @Layout.CellAlign(Position.Middle)">
+                <div @onclick="ClickFacebook">
+                    <img src="/images/facebook-login.png" style="cursor: pointer" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    @*<BaseMatProgressCircle Indeterminate="true" Size="MatProgressCircleSize.Large" />*@
+}
+
+<style type="text/css">
+    app, body, html {
+        height: 100%;
+        margin: 0;
+    }
+
+    .max-height {
+        min-height: 100%
+    }
+</style>

@@ -13,19 +13,5 @@ namespace DungeonNexus.View.Home.Pages
             get => ViewModel!;
             set => ViewModel = value;
         }
-
-        [Inject]
-        [AllowNull]
-        private LoggedUserStore UserStore { get; set; }
-
-        [Inject]
-        [AllowNull]
-        private NavigationManager NavigationManager { get; set; }
-
-        public async Task Logout()
-        {
-            await UserStore.RemoveLoggedUser();
-            NavigationManager.NavigateTo("/");
-        }
     }
 }
