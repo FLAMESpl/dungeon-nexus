@@ -1,0 +1,7 @@
+﻿@using Blazor.Extensions.Canvas; 
+
+<div style="overflow: scroll; width: 100%; height: 100%">
+    <div @onclick="HandleClick">
+        <BECanvas Width="GRID_SIZE * Width" Height="GRID_SIZE * Height" @ref="canvas" />
+    </div>
+</div>

@@ -1,3 +1,9 @@
-﻿<div>
-    <Blazor.Extensions.BECanvasComponent Width="1000" Height="500" @ref="canvas" />
+﻿<div style="position: fixed; max-height: @($"{ColorPicker.Height}px"); max-width: @($"{ColorPicker.Width}px")">
+    <ColorPicker />
+</div>
+<div style="display: inline-flex; height: 100%; width: 100%">
+    <div style="min-width: @($"{ColorPicker.Width}px")" />
+    <div>
+        <WorldGrid Width="30" Height="30" />
+    </div>
 </div>

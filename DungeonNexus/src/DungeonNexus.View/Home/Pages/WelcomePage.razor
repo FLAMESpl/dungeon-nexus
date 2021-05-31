@@ -1,3 +1,13 @@
 ﻿@using ViewModel.Users;
+@using DungeonNexus.View.World;
 @page "/welcome"
 @inherits ReactiveComponentBase<User>
+
+<WorldEditor />
+
+<style>
+    app, body, app div {
+        height: 100%;
+        width: 100%;
+    }
+</style>
