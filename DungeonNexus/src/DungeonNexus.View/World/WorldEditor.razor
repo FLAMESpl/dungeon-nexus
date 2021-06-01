@@ -1,9 +1,13 @@
 ﻿<div style="position: fixed; max-height: @($"{ColorPicker.Height}px"); max-width: @($"{ColorPicker.Width}px")">
-    <ColorPicker />
+    <ColorPicker @bind-Value="rgbColor" />
 </div>
 <div style="display: inline-flex; height: 100%; width: 100%">
     <div style="min-width: @($"{ColorPicker.Width}px")" />
     <div>
-        <WorldGrid Width="30" Height="30" />
+        <WorldGrid Width="30" Height="30" FillColor="rgbColor" />
     </div>
 </div>
+
+@code {
+    private RgbColor rgbColor;
+}

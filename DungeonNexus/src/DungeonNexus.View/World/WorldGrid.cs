@@ -17,11 +17,11 @@ namespace DungeonNexus.View.World
         [AllowNull] private Canvas2DContext context;
         [AllowNull] private GridModel grid;
 
-        private readonly List<Vector2> points = new();
         private bool initialized = false;
 
         [Parameter] public int Height { get; set; }
         [Parameter] public int Width { get; set; }
+        [Parameter] public RgbColor FillColor { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -40,7 +40,7 @@ namespace DungeonNexus.View.World
         {
             if (initialized)
             {
-                await grid.ToogleSquare(context, mouseEventArgs.OffsetX, mouseEventArgs.OffsetY);
+                await grid.ToogleSquare(context, mouseEventArgs.OffsetX, mouseEventArgs.OffsetY, FillColor);
             }
         }
     }

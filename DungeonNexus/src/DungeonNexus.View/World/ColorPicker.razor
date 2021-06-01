@@ -1,8 +1,8 @@
 ﻿@using Blazor.Extensions.Canvas
 
-<div style="position: absolute; z-index: 0; max-height: @($"{Height}px"); max-width: @($"{Width}px")" @onclick="HandleClick">
+<div style="position: absolute; z-index: 0; max-height: @($"{Height}px"); max-width: @($"{Width}px")">
     <BECanvas Width="Width" Height="Height" @ref="paletteCanvas" />
 </div>
-<div style="position: absolute; z-index: 1; max-height: @($"{Height}px"); max-width: @($"{Width}px")">
+<div style="position: absolute; z-index: 1; max-height: @($"{Height}px"); max-width: @($"{Width}px")" @onclick="HandleClick">
     <BECanvas Width="Width" Height="Height" @ref="selectorCanvas" />
 </div>

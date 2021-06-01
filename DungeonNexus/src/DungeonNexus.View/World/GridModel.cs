@@ -1,5 +1,5 @@
 ﻿using Blazor.Extensions.Canvas.Canvas2D;
-using System.Diagnostics;
+using DungeonNexus.View.Components;
 using System.Drawing;
 using System.Threading.Tasks;
 
@@ -10,14 +10,18 @@ namespace DungeonNexus.View.World
         private readonly int width;
         private readonly int height;
         private readonly int size;
-        private bool[,] filled;
+        private RgbColor[,] filled;
 
         public GridModel(int width, int height, int size)
         {
             this.width = width;
             this.height = height;
             this.size = size;
-            filled = new bool[width, height];
+            filled = new RgbColor[width, height];
+
+            for (var i = 0; i < width; i++)
+                for (var j = 0; j < height; j++)
+                    filled[i, j] = RgbColor.White;
         }
 
         public async Task Draw(Canvas2DContext context)
@@ -35,20 +39,20 @@ namespace DungeonNexus.View.World
             await context.StrokeAsync();
         }
 
-        public async Task ToogleSquare(Canvas2DContext context, double mouseX, double mouseY)
+        public async Task ToogleSquare(Canvas2DContext context, double mouseX, double mouseY, RgbColor fillColor)
         {
             var position = MouseToGrid(mouseX, mouseY);
             if (IsInGrid(position))
             {
-                if (filled[position.X, position.Y])
+                if (filled[position.X, position.Y] == fillColor)
                 {
                     await ClearSquare(context, position);
-                    filled[position.X, position.Y] = false;
+                    filled[position.X, position.Y] = RgbColor.White;
                 }
                 else
                 {
-                    await DrawSquare(context, position);
-                    filled[position.X, position.Y] = true;
+                    await DrawSquare(context, position, fillColor);
+                    filled[position.X, position.Y] = fillColor;
                 }
             }
         }
@@ -67,9 +71,9 @@ namespace DungeonNexus.View.World
             await context.ClearRectAsync(point.X * size + 1, point.Y * size + 1, size - 2, size - 2);
         }
 
-        private async Task DrawSquare(Canvas2DContext context, Point point)
+        private async Task DrawSquare(Canvas2DContext context, Point point, RgbColor fillColor)
         {
-            await context.SetFillStyleAsync("black");
+            await context.SetFillColorAsync(fillColor);
             await context.FillRectAsync(point.X * size + 1, point.Y * size + 1, size - 2, size - 2);
         }
 
